@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 ################################################################################
 # Test DiffuAgent with Test Case IDs
 ################################################################################
@@ -7,7 +8,7 @@
 # conda activate bfcl2
 
 # Configuration - modify these paths according to your environment
-export BFCL_PROJECT_ROOT="${BFCL_PROJECT_ROOT:-/path/to/DiffuAgent/unified_envs/gorilla/berkeley-function-call-leaderboard}"
+export BFCL_PROJECT_ROOT="${BFCL_PROJECT_ROOT:-/home/u7444045/Research/projects/diffusion_reasoning/DiffuAgent/unified_envs/gorilla/berkeley-function-call-leaderboard}"
 export CUDA_VISIBLE_DEVICES="0"
 
 export DEBUG_DIFFUAGENT=0
@@ -33,6 +34,14 @@ echo "Testing Model: ${MODEL_NAME}"
 echo "=========================================="
 
 # Step 1: Generate responses
+# echo "[Step 1] Generating responses..."
+# bfcl generate \
+#   --model "$MODEL_NAME" \
+#   --local-model-path "$MODEL_PATH" \
+#   --run-ids \
+#   --allow-overwrite
+
+# CUSTOM: generate using local host LLMs
 echo "[Step 1] Generating responses..."
 bfcl generate \
   --model "$MODEL_NAME" \
